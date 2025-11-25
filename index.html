@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workout Schedule Planner</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Workout Schedule Planner</h1>
+            <p class="subtitle">Plan and track your weekly workout routines</p>
+        </header>
+        
+        <div class="main-content">
+            <div class="sidebar">
+                <div class="card">
+                    <h2>Add New Workout</h2>
+                    <form id="workout-form">
+                        <div class="form-group">
+                            <label for="workout-name">Workout Name</label>
+                            <input type="text" id="workout-name" placeholder="e.g., Chest Day, Leg Day" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="workout-day">Day of Week</label>
+                            <select id="workout-day" required>
+                                <option value="">Select a day</option>
+                                <option value="Monday">Monday</option>
+                                <option value="Tuesday">Tuesday</option>
+                                <option value="Wednesday">Wednesday</option>
+                                <option value="Thursday">Thursday</option>
+                                <option value="Friday">Friday</option>
+                                <option value="Saturday">Saturday</option>
+                                <option value="Sunday">Sunday</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="workout-week">Week Number</label>
+                            <input type="number" id="workout-week" min="1" max="52" placeholder="1-52" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="workout-duration">Duration (minutes)</label>
+                            <input type="number" id="workout-duration" min="1" placeholder="e.g., 60" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="workout-intensity">Intensity Level</label>
+                            <select id="workout-intensity" required>
+                                <option value="">Select intensity</option>
+                                <option value="Low">Low</option>
+                                <option value="Medium">Medium</option>
+                                <option value="High">High</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="workout-exercises">Exercises</label>
+                            <textarea id="workout-exercises" placeholder="List exercises with sets and reps" required></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="workout-notes">Notes</label>
+                            <textarea id="workout-notes" placeholder="Any additional notes..."></textarea>
+                        </div>
+                        
+                        <div class="form-group checkbox-group">
+                            <input type="checkbox" id="apply-to-all-week">
+                            <label for="apply-to-all-week">Apply this workout to all days of the week</label>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">Add Workout</button>
+                    </form>
+                </div>
+                
+                <div class="card">
+                    <h2>Quick Week Setup</h2>
+                    <div class="form-group">
+                        <label for="template-week">Week Number</label>
+                        <input type="number" id="template-week" min="1" max="52" placeholder="1-52">
+                    </div>
+                    <button id="use-template-btn" class="btn btn-secondary">Use Predefined Week Template</button>
+                </div>
+                
+                <div class="card">
+                    <h2>Workout Summary</h2>
+                    <div class="workout-details">
+                        <div class="detail-card">
+                            <div class="value" id="total-workouts">0</div>
+                            <div class="label">Total Workouts</div>
+                        </div>
+                        <div class="detail-card">
+                            <div class="value" id="weekly-workouts">0</div>
+                            <div class="label">This Week</div>
+                        </div>
+                        <div class="detail-card">
+                            <div class="value" id="avg-duration">0</div>
+                            <div class="label">Avg. Duration (min)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="content">
+                <div class="card">
+                    <div class="week-selector">
+                        <h2>Week <span id="current-week">1</span> Workouts</h2>
+                        <div class="week-nav">
+                            <button id="prev-week" class="btn btn-secondary">&lt; Previous</button>
+                            <button id="next-week" class="btn btn-secondary">Next &gt;</button>
+                        </div>
+                    </div>
+                    
+                    <div id="workouts-container">
+                        <div class="empty-state">
+                            <i>💪</i>
+                            <h3>No workouts scheduled for this week</h3>
+                            <p>Add a workout using the form on the left</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h2>Weekly Schedule Overview</h2>
+                    <div id="weekly-overview">
+                        <!-- Weekly overview will be generated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Workout Schedule Planner &copy; 2023 | Your progress is saved locally in your browser</p>
+        </footer>
+    </div>
+    
+    <div id="notification" class="notification">
+        Workout added successfully!
+    </div>
+
+    <!-- Add this modal for template selection -->
+    <div id="template-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Select Workout Template</h3>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="template-options">
+                    <div class="template-card" data-template="beginner">
+                        <h4>Beginner Full Body</h4>
+                        <div class="template-details">
+                            <span class="badge beginner">Beginner</span>
+                            <span class="badge full-body">Full Body</span>
+                        </div>
+                        <p>3 days/week • Balanced full-body workouts</p>
+                        <ul>
+                            <li>🏋️ Full Body Strength</li>
+                            <li>💨 Cardio & Core</li>
+                            <li>🔄 Active Recovery</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="template-card" data-template="push-pull">
+                        <h4>Push/Pull/Legs</h4>
+                        <div class="template-details">
+                            <span class="badge intermediate">Intermediate</span>
+                            <span class="badge split">Split Routine</span>
+                        </div>
+                        <p>6 days/week • Classic bodybuilding split</p>
+                        <ul>
+                            <li>➡️ Push (Chest/Shoulders/Triceps)</li>
+                            <li>⬅️ Pull (Back/Biceps)</li>
+                            <li>🦵 Legs & Core</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="template-card" data-template="bro-split">
+                        <h4>Bro Split</h4>
+                        <div class="template-details">
+                            <span class="badge advanced">Advanced</span>
+                            <span class="badge split">Muscle Group Split</span>
+                        </div>
+                        <p>5 days/week • Focus on one muscle group per day</p>
+                        <ul>
+                            <li>💪 Chest & Triceps</li>
+                            <li>🎯 Back & Biceps</li>
+                            <li>🦵 Legs</li>
+                            <li>👔 Shoulders & Core</li>
+                            <li>💨 Cardio & Mobility</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="template-card" data-template="strength">
+                        <h4>Strength Focus</h4>
+                        <div class="template-details">
+                            <span class="badge intermediate">Intermediate</span>
+                            <span class="badge strength">Strength</span>
+                        </div>
+                        <p>4 days/week • Powerlifting focus</p>
+                        <ul>
+                            <li>🏋️ Heavy Squats & Accessories</li>
+                            <li>🏋️ Bench Press & Upper Body</li>
+                            <li>🏋️ Deadlifts & Back</li>
+                            <li>🔧 Technique & Mobility</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="template-card" data-template="hiit">
+                        <h4>HIIT & Cardio</h4>
+                        <div class="template-details">
+                            <span class="badge intermediate">Intermediate</span>
+                            <span class="badge cardio">Cardio</span>
+                        </div>
+                        <p>5 days/week • High-intensity interval training</p>
+                        <ul>
+                            <li>⚡ Full Body HIIT</li>
+                            <li>🏃‍♂️ Running Intervals</li>
+                            <li>💪 Strength HIIT</li>
+                            <li>🧘 Active Recovery</li>
+                            <li>🔥 Metabolic Conditioning</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="template-card" data-template="home">
+                        <h4>Home Workout</h4>
+                        <div class="template-details">
+                            <span class="badge beginner">Beginner</span>
+                            <span class="badge bodyweight">Bodyweight</span>
+                        </div>
+                        <p>4 days/week • No equipment needed</p>
+                        <ul>
+                            <li>🧍 Bodyweight Strength</li>
+                            <li>💨 Cardio Circuit</li>
+                            <li>🧘 Yoga & Mobility</li>
+                            <li>🔥 HIIT Bodyweight</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
