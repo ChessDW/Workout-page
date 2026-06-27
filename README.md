@@ -1,24 +1,24 @@
 # 🏋️ Workout Schedule Planner
 
-**Workout Schedule Planner** es una aplicación web intuitiva diseñada para organizar, planificar y realizar el seguimiento de rutinas de ejercicio semanales. Permite a los usuarios gestionar su progreso de manera local y eficiente utilizando plantillas predefinidas.
+**Workout Schedule Planner** is an intuitive web application designed to organize, plan, and track weekly workout routines. It allows users to manage their progress locally and efficiently using pre-defined templates.
 
-## 🚀 Características Principales
+## 🚀 Key Features
 
-* **Planificación Dinámica:** Añade entrenamientos personalizados con detalles específicos (nombre, día, duración, ejercicios e intensidad).
-* **Gestión de Plantillas:** Selección rápida de rutinas (Beginner, Push/Pull/Legs, Bro Split, HIIT, etc.) para una configuración inicial ágil.
-* **Resumen de Progreso:** Visualización en tiempo real de estadísticas como total de entrenamientos, sesiones semanales y duración promedio.
-* **Persistencia de Datos:** El progreso y las configuraciones se guardan de forma local en el navegador del usuario.
-* **Navegación Intuitiva:** Sistema de gestión de semanas mediante un selector dinámico para organizar entrenamientos a largo plazo.
+* **Dynamic Planning:** Add custom workouts with specific details (name, day, duration, exercises, and intensity).
+* **Template Management:** Quick selection of routines (Beginner, Push/Pull/Legs, Bro Split, HIIT, etc.) for agile initial configuration.
+* **Progress Summary:** Real-time visualization of statistics, including total workouts, weekly sessions, and average duration.
+* **Data Persistence:** Progress and settings are saved locally in the user's browser.
+* **Intuitive Navigation:** A week management system using a dynamic selector to organize long-term training.
 
-## 🛠️ Stack Tecnológico
+## 🛠️ Tech Stack
 
-* **Frontend:** HTML5, CSS3 y JavaScript (Vanilla).
-* **UI/UX:** Diseño responsivo basado en tarjetas (cards) y componentes modales.
-* **Almacenamiento:** `localStorage` para persistencia de datos del lado del cliente.
-* **Estructura:** Diseño modular para una fácil extensión de funcionalidades.
+* **Frontend:** HTML5, CSS3, and Vanilla JavaScript.
+* **UI/UX:** Responsive design based on cards and modal components.
+* **Storage:** `localStorage` for client-side data persistence.
+* **Structure:** Modular design for easy extensibility of features.
 
-## 🧠 Arquitectura de la Aplicación
+## 🧠 Application Architecture
 
-- `index.html`: Estructura principal y contenedores de la aplicación.
-- `styles.css`: Estilos para una interfaz moderna, limpia y centrada en el usuario.
-- `script.js`: Lógica de negocio, manejo de estados, validación de formularios y renderizado dinámico de los datos.
+- `index.html`: Main structure and application containers.
+- `styles.css`: Styles for a modern, clean, and user-centric interface.
+- `script.js`: Business logic, state management, form validation, and dynamic data rendering.
